@@ -23,10 +23,11 @@ Raw tables are never modified. Exclusions are applied in the cleaned layer and c
 | 14 | Categories | 610 products with no category; 2 categories missing from translation (`pc_gamer`, `portateis_cozinha_e_preparadores_de_alimentos`) | Label blanks "Unknown"; add own mapping, documented as ours |
 | 15 | Zero payments | 9 (6 voucher, 3 not_defined) | Exclude `not_defined` from payment-mix analysis |
 | 16 | High prices | Top item price 6,735.00 | Keep; show median alongside mean |
+| 17 | Line endings | Source files for reviews and category translation use CRLF (`\r\n`); the other seven use LF. Loading them as LF left a hidden carriage return on the last column (reviews: 99,224 rows; translation: 70 rows). | Loaded those two files with `LINES TERMINATED BY '\r\n'`; a carriage-return check on the last column of all 9 tables now returns 0 |
 
-## Working definitions (to confirm before KPI work)
+## Definitions (adopted)
 
-- **Valid order:** at least one item, and status not `canceled` or `unavailable`. Expected count: 99,441 - 775 - 461 - 6 = 98,199 (to be verified in the cleaned layer).
+- **Valid order:** at least one item, and status not `canceled` or `unavailable`. Verified count: 98,199 (99,441 - 775 - 461 - 6).
 - **Revenue:** sum of item `price` for valid orders (freight reported separately). Currency to be confirmed from the dataset documentation.
 - **Customers:** distinct `customer_unique_id`.
 
