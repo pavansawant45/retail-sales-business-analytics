@@ -89,7 +89,7 @@ LINES TERMINATED BY '\n' IGNORE 1 LINES;
 LOAD DATA LOCAL INFILE 'C:/Users/DELL/Pavan_Projects/retail-sales-business-analytics/data/raw/olist_order_reviews_dataset.csv'
 INTO TABLE raw_order_reviews CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY ''
-LINES TERMINATED BY '\n' IGNORE 1 LINES;
+LINES TERMINATED BY '\r\n' IGNORE 1 LINES;
 
 LOAD DATA LOCAL INFILE 'C:/Users/DELL/Pavan_Projects/retail-sales-business-analytics/data/raw/olist_products_dataset.csv'
 INTO TABLE raw_products CHARACTER SET utf8mb4
@@ -104,7 +104,7 @@ LINES TERMINATED BY '\n' IGNORE 1 LINES;
 LOAD DATA LOCAL INFILE 'C:/Users/DELL/Pavan_Projects/retail-sales-business-analytics/data/raw/product_category_name_translation.csv'
 INTO TABLE raw_category_translation CHARACTER SET utf8mb4
 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' ESCAPED BY ''
-LINES TERMINATED BY '\n' IGNORE 1 LINES;
+LINES TERMINATED BY '\r\n' IGNORE 1 LINES;
 
 
 
@@ -121,9 +121,17 @@ UNION ALL SELECT 'raw_products', COUNT(*), 32951, COUNT(*) - 32951 FROM raw_prod
 UNION ALL SELECT 'raw_sellers', COUNT(*), 3095, COUNT(*) - 3095 FROM raw_sellers
 UNION ALL SELECT 'raw_category_translation', COUNT(*), 71, COUNT(*) - 71 FROM raw_category_translation;
 
--- Stray carriage-return checks: should both return 0 (files use \n line endings).
-SELECT COUNT(*) AS customers_rows_with_cr FROM raw_customers WHERE RIGHT(customer_state, 1) = CHAR(13);
-SELECT COUNT(*) AS orders_rows_with_cr FROM raw_orders WHERE RIGHT(order_estimated_delivery_date, 1) = CHAR(13);
+-- Stray carriage-return check on the last column of every table: every value should be 0.
+-- reviews and category translation files use CRLF line endings and are loaded with '\r\n'.
+SELECT 'raw_customers' AS table_name, COUNT(*) AS rows_with_cr FROM raw_customers WHERE RIGHT(customer_state, 1) = CHAR(13)
+UNION ALL SELECT 'raw_geolocation', COUNT(*) FROM raw_geolocation WHERE RIGHT(geolocation_state, 1) = CHAR(13)
+UNION ALL SELECT 'raw_orders', COUNT(*) FROM raw_orders WHERE RIGHT(order_estimated_delivery_date, 1) = CHAR(13)
+UNION ALL SELECT 'raw_order_items', COUNT(*) FROM raw_order_items WHERE RIGHT(freight_value, 1) = CHAR(13)
+UNION ALL SELECT 'raw_order_payments', COUNT(*) FROM raw_order_payments WHERE RIGHT(payment_value, 1) = CHAR(13)
+UNION ALL SELECT 'raw_order_reviews', COUNT(*) FROM raw_order_reviews WHERE RIGHT(review_answer_timestamp, 1) = CHAR(13)
+UNION ALL SELECT 'raw_products', COUNT(*) FROM raw_products WHERE RIGHT(product_width_cm, 1) = CHAR(13)
+UNION ALL SELECT 'raw_sellers', COUNT(*) FROM raw_sellers WHERE RIGHT(seller_state, 1) = CHAR(13)
+UNION ALL SELECT 'raw_category_translation', COUNT(*) FROM raw_category_translation WHERE RIGHT(product_category_name_english, 1) = CHAR(13);
 
 -- Visual spot checks
 SELECT * FROM raw_orders LIMIT 5;
