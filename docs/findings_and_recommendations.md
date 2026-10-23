@@ -52,6 +52,11 @@ Basis: valid orders (see docs/data_quality_log.md); revenue = item price excludi
 ## Information that would improve future analysis
 Product cost and margin, discounts and promotions, refunds and returns, seller and store locations with distances, and more than one prior year of data.
 
+## G. Macro-regions and product concentration (window Jan 2017 - Aug 2018)
+- Revenue by region (customer state grouped into the five Brazilian macro-regions; our own mapping): Southeast 8,794,685.26 (65.4%), South 1,930,565.23 (14.4%), Northeast 1,532,195.96 (11.4%), Central-West 859,469.14 (6.4%), North 332,614.09 (2.5%).
+- North and Northeast, the two smallest regions by revenue, include the states with the slowest and least reliable delivery and the highest freight shares. Whether delivery performance limits demand there cannot be determined from this data.
+- Product concentration is low: of 32,578 products sold, the top 10 account for 3.3% of revenue, the top 100 for 13.6% and the top 1,000 (about 3% of products) for 39.6%. Products have no names in the dataset, so analysis is at category level.
+
 ## Limitations
 - No cost, profit or discount data. Currency to be confirmed from the dataset documentation.
 - Only about 20 months of meaningful data; seasonality cannot be separated from growth with one prior year.
