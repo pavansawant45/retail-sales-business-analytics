@@ -28,6 +28,30 @@ Basis: valid orders (see docs/data_quality_log.md); revenue = item price excludi
 ## D. Peak day
 - 24 Nov 2017: 1,166 valid orders, 15.7% of November's 7,421 and about 4.7 times the November daily average. Coincides with Black Friday 2017; the data holds no promotion information, so causation is not established.
 
+## E. Delivery and customer experience
+- 96,470 delivered valid orders with a delivery date: average 12.6 days, median 10.2 days, 6.8% delivered after the estimated date.
+- Worst period: Nov 2017 (15.2 days, 12.4% late) to Mar 2018 (16.3 days, 19.0% late; Feb 2018 averaged 16.9 days). By Aug 2018: 7.7 days, 6.2% late. Orders still in transit at the end of the data are not included, which may flatter the latest months.
+- By state (at least 100 delivered orders): SP 8.8 days (4.5% late); slowest AM 26.4, AL 24.5, PA 23.8 days. Highest late shares: AL 21.4%, MA 17.4%, SE 15.2%. RJ, second-largest by revenue: 15.3 days, 12.1% late. AM shows a low late share (2.8%) despite long delivery times, so estimates appear to differ by location (not examined).
+- Reviews on valid orders: 58.4% five-star, 19.5% four, 8.3% three, 3.1% two, 10.7% one; 732 valid orders have no review.
+- Late deliveries average 2.27 stars vs 4.29 on time (6,381 vs 89,443 reviewed orders). An association; other factors may differ between the groups.
+
+## F. Payments
+- Main payment type on valid orders: credit card 75.5% (average maximum installments 3.6), boleto 19.9%, voucher 3.1%, debit card 1.5%.
+- Reconciliation: payments 16,008,872.12 vs item price + freight 15,843,553.24 (gap 165,318.88). Pieces: +162,591.95 payments on 775 orders with no items; +2,838.38 on valid orders; +32.01 canceled orders; 0.00 unavailable; -143.46 items of the one valid order with no payment row. The pieces sum exactly to the gap.
+- On valid orders, 97,897 of 98,198 (99.7%) have payments equal to item price + freight within one cent; 262 are higher (3,038.13 in total) and 39 lower (199.08). The data does not explain the differences.
+- 162,591.95 of payments sits on orders with no items (mostly unavailable and canceled). The data contains no refund information, so the outcome of that money is unknown.
+
+## Recommendations (draft; each needs the additional information listed)
+1. Improve delivery reliability first in high-revenue, high-lateness states, starting with RJ (12.1% late vs 4.5% in SP), then the north-east (AL, MA, SE). Evidence: late orders average 2.27 stars vs 4.29. Needs carrier, seller and distance data to find causes.
+2. Plan capacity for peak events. Nov 2017 had 24 Nov at about 4.7 times the daily average, and that month had 12.4% late deliveries. Needs the promotion calendar and carrier capacity.
+3. Reduce dependence on SP (38.3% of revenue, share rising from about 36.1% to 40.3%) and look into why RJ grew more slowly (+103.7% vs +138.3%). Needs regional marketing and pricing data.
+4. Investigate cool_stuff (+8.9% vs +138.3% overall). Needs seller and catalog data for that category.
+5. Ask finance or operations what happened to the 162,591.95 of payments on orders with no items (refunds, failed captures or data issues).
+6. Review shipping cost in the north and north-east, where freight reaches 20-28% of item price. Needs distance and carrier cost data.
+
+## Information that would improve future analysis
+Product cost and margin, discounts and promotions, refunds and returns, seller and store locations with distances, and more than one prior year of data.
+
 ## Limitations
 - No cost, profit or discount data. Currency to be confirmed from the dataset documentation.
 - Only about 20 months of meaningful data; seasonality cannot be separated from growth with one prior year.
