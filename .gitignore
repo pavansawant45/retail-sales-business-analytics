@@ -2,3 +2,4 @@ data/raw/*.csv
 data/cleaned/*.csv
 data/exports/*.csv
 excel/*_full.xlsx
+powerbi/*.pbix

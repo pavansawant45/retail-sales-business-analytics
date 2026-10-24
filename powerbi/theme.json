@@ -1,0 +1,7 @@
+{
+  "name": "Retail Light Blue",
+  "dataColors": ["#1F4E79", "#5B9BD5", "#A9C6E3", "#7F7F7F", "#BFBFBF", "#C55A11"],
+  "background": "#FFFFFF",
+  "foreground": "#252423",
+  "tableAccent": "#1F4E79"
+}
